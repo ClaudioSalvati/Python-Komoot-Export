@@ -29,7 +29,7 @@ limit = "50" # standard is 24
 tour_url = f"https://www.komoot.de/api/v007/users/{client_id}/tours/?sport_types={sport_types}&type={type}&sort_field={sort_field}&sort_direction={sort_direction}&name={name}&status={status}&hl={hl}&page={page}&limit={limit}"
 
 # Define the folder location and file name to save the fetched data
-output_folder = "S:/Dropbox/Arbeit/05 Tableau/Databases/Komoot/JSON/"
+output_folder = "<set here the path to your output folder>"
 file_name = "komoot_data.json"
 file_path = f"{output_folder}{file_name}"
 
