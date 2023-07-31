@@ -12,6 +12,7 @@ The URLs used to extract data from Komoot can be subject to sudden and unannouce
 
 ## The result
 With the following script, you can export your komoot data in JSON format and store is as CSV, ready to be used for any analysis you have in mind. 
+* Get Komoot tour JSON data.py: This script will download the full tour track as gpx, as well as some information about the tour as JSON
 
 ## Credits
 As already mentioned, the original code for the extraction comes from [simplylu](https://github.com/simplylu/).
