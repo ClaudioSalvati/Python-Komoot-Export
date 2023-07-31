@@ -17,7 +17,6 @@ client_id = "<your client id>"
 login_url = "https://account.komoot.com/v1/signin"
 
 # define komoot url for tour overview to get tour ids from
-# tour_url = f"https://www.komoot.de/user/{client_id}/tours?type=recorded"
 sport_types = ""
 type = "tour_recorded"
 sort_field = "date"
@@ -28,7 +27,6 @@ hl = "de"
 page = ""
 limit = "50" # standard is 24
 tour_url = f"https://www.komoot.de/api/v007/users/{client_id}/tours/?sport_types={sport_types}&type={type}&sort_field={sort_field}&sort_direction={sort_direction}&name={name}&status={status}&hl={hl}&page={page}&limit={limit}"
-print(tour_url)
 
 # Define the folder location and file name to save the fetched data
 output_folder = "S:/Dropbox/Arbeit/05 Tableau/Databases/Komoot/JSON/"
@@ -36,7 +34,7 @@ file_name = "komoot_data.json"
 file_path = f"{output_folder}{file_name}"
 
 # define base url to retrieve information from
-base_url = "https://www.komoot.de/tour/"
+base_url = "https://www.komoot.de/api/v007/tours/"
 
 # Create a session to store login information
 s = requests.Session()
@@ -85,22 +83,29 @@ with open(file_path, 'w') as file:
     json.dump(data, file)
 print(f"Data has been saved to {file_path}")
 
-# # Output all tours made
-# for idx, tour in enumerate( data["_embedded"]["tours"]):
-#     print(f"({idx+1}) {tour['id']}")
-
 # Prepare to fetch detailed information for each tour
-base_url = "https://www.komoot.de/tour/"
 for tour in data["_embedded"]["tours"]:
-    tour_name = tour['name']
     tour_id = tour['id']
-    tour_url = f"{base_url}{tour_id}"
-    response = s.get(tour_url, headers={"onlyprops": "true"})
+    tour_name = tour['name']
+    # prepare the gpx files export
+    gpx_url = f"{base_url}{tour_id}.gpx"  # Append ".gpx" to the URL to get the GPX file
+    response = requests.get(gpx_url)
+    if response.status_code == 200 or response.status_code == 304 :
+        # Save the GPX data to a file
+        gpx_file_path = f"{output_folder}{tour['id']}_tour_data.gpx"
+        with open(gpx_file_path, 'wb') as file:
+            file.write(response.content)
+        print(f"GPX file for tour '{tour['id']}' | '{tour['id']}' has been downloaded and saved to '{gpx_file_path}'")
+    else:
+        print(f"Failed to download GPX file for tour '{tour['name']}' | '{tour['id']}' \n Status code was {response.status_code} \n")
+
+    # prepare the JSON file export
+    tourData_url = f"{base_url}{tour_id}"
+    response = s.get(tourData_url, headers={"onlyprops": "true"})
     if response.status_code != 200:
         print(f"Failed to fetch data for tour {tour_id}")
         continue
     tour_data = json.loads(response.text)
-    
     # Specify the file path where you want to save the detailed tour data
     output_file = f"{output_folder}{tour_id}_tour_data.json"
     # Write the detailed tour data to a JSON file
