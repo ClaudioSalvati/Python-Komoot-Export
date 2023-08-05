@@ -1,5 +1,5 @@
 # Python-Komoot-Export
-Export all tour data and gpx tracks from Komoot via Python.
+Export all tour data and gpx tracks from Komoot via Python and make them available for analysis.
 
 ## Motivation
 I wanted to download all komoot data to analyse it in Tableau. To avoid downloading all tour manually, I started looking around for ready-to-use scripts for python. 
