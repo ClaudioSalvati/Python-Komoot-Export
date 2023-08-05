@@ -12,14 +12,19 @@ The URLs used to extract data from Komoot can be subject to sudden and unannouce
 
 ## The result
 With the following script, you can export your komoot data in JSON format and store is as CSV, ready to be used for any analysis you have in mind. 
-* Get Komoot tour JSON data.py
+* 01 Get Komoot tour JSON data.py
   * This script will download the full tour track as GPX, as well as some information about the tour as JSON
   * The GPX can be downloaded only if the tour is public. For private tours, you will have to consider other methods to export the data
   * Nevertheless you will have to enter your credentials to export the tours
-* Convert Komoot GPX files to CSV.py
-  * This scripts convert the GPX files to CSV format for better handling in Tableau
-* Convert Komoot JSON files to CSV.py
-  * This scripts convert the JSON files to CSV format for better handling in Tableau
+* 02 Convert Komoot GPX files to CSV.py
+  * This script convert the GPX files to CSV format for better handling in Tableau
+* 03 Convert Komoot JSON files to CSV.py
+  * This script convert the JSON files to CSV format for better handling in Tableau
+* 04 Merge CSV files by type (GPX and Tour Info).py
+  * This script is needed to merge the many CSV files to one, separating them by data type (GPX and Tour Info)
+* 05 Join GPX and Tour Info CSV files.py
+  * This script joins the two CSV files of the previous step (04)
+  * It is not required for an analysis in Tableau or PowerBi, but can be useful if you use Excel
 
 ## Credits
 As already mentioned, the original code for the extraction comes from [simplylu](https://github.com/simplylu/).
