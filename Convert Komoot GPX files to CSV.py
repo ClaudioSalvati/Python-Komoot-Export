@@ -4,6 +4,7 @@
 import gpxpy
 import csv
 import os
+import re
 
 # define the folders
 input_folder = "<your input folder>"
