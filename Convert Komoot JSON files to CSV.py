@@ -41,14 +41,11 @@ for json_file in json_files:
     # Create a new DataFrame without duplicate rows
     df_selected_unique = df_selected.drop_duplicates()
 
-    # Transpose the DataFrame to have a "dimension" column and a "value" column using pd.melt()
-    df_transposed = pd.melt(df_selected_unique, var_name="dimension", value_name="value")
-
-    # Convert the "value" column to strings (necessary to use .str.replace later)
-    df_transposed["value"] = df_transposed["value"].astype(str)
-
-    # Replace "{width}" and "{height}" with "1920" in the "value" column
-    df_transposed["value"] = df_transposed["value"].str.replace("{width}", "1920").str.replace("{height}", "1920")
+    # Convert the "vector_map_image_src" column to string type using .loc
+    df_selected_unique.loc[:, "vector_map_image_src"] = df_selected_unique["vector_map_image_src"].astype(str)
+    
+    # Replace "{width}" and "{height}" with "1920" in the "vector_map_image_src" column using .loc
+    df_selected_unique.loc[:, "vector_map_image_src"] = df_selected_unique["vector_map_image_src"].str.replace("{width}", "1920").str.replace("{height}", "1920")
 
     # Define the output CSV filename based on the activity date and name
     activity_date = df_selected_unique["activity_date"].iloc[0]
@@ -59,8 +56,8 @@ for json_file in json_files:
 
     csv_file = f"{output_folder}{activity_date}_{name}_tour_info.csv"
 
-    # Save the transposed table to the CSV file without row indexes
-    df_transposed.to_csv(os.path.join(input_folder, csv_file), index=False)
+    # Save the table to the CSV file without row indexes
+    df_selected_unique.to_csv(os.path.join(input_folder, csv_file), index=False)
 
-    # Print a message indicating that the transposed table has been saved as a CSV file
-    print(f"Transposed table has been created and saved as '{csv_file}'.")
+    # Print a message indicating that the table has been saved as a CSV file
+    print(f"Table has been created and saved as '{csv_file}'.")
