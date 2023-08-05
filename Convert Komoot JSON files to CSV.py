@@ -24,7 +24,8 @@ json_files = [file for file in os.listdir(input_folder) if file.endswith(".json"
 # Iterate through each JSON file
 for json_file in json_files:
     # Skip the file if it has the name "komoot_data.json"
-    # this file is generated in the script "Get Komoot tour JSON data.py" and should not be converted to CSV. I stored it in the same folder and needed to skip it
+    # this file is generated in the script "Get Komoot tour JSON data.py" and should not be converted to CSV. 
+    # This file is part of the script "Get Komoot tour JSON data.py"
     if json_file == "komoot_data.json":
         continue
 
