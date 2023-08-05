@@ -9,12 +9,18 @@ import os
 input_folder = "<your input folder>"
 output_folder = "<your output folder>"
 
+# Function to sanitize the name and replace forbidden characters with "_"
+# In case you have used characters in the tours name that are forbidden in file names (I did)
+def sanitize_name(name):
+    return re.sub(r'[\\/:*?"<>|]', '_', name)
+
+# Export the activity name from the file
 def get_activity_info(gpx):
     # Extract activity name from GPX file, if available
-    activity_name = gpx.name or ""
-
+    activity_name = sanitize_name(gpx.name) or ""
     return activity_name
 
+# Create function to export export GPX to CSV
 def gpx_to_csv(input_file, output_folder):
     with open(input_file, 'r', encoding='utf-8') as gpx_file:
         gpx = gpxpy.parse(gpx_file)
@@ -34,9 +40,10 @@ def gpx_to_csv(input_file, output_folder):
 
     # Remove 14 characters from the rightmost side of the original GPX file name
     original_gpx_file_name = os.path.basename(input_file)[:-14]
+    original_gpx_file_name = sanitize_name(original_gpx_file_name)
 
     # Write the data to a CSV file
-    output_filename = f"{activity_date}_{activity_name}.csv" if activity_name else f"{original_gpx_file_name}.csv"
+    output_filename = f"{activity_date}_{activity_name}_gpx.csv" if activity_name else f"{original_gpx_file_name}_gpx.csv"
     output_file = os.path.join(output_folder, output_filename)
     with open(output_file, 'w', newline='', encoding='utf-8') as csv_file:
         writer = csv.writer(csv_file)
