@@ -36,7 +36,7 @@ file_path = f"{output_folder}{file_name}"
 # define base url to retrieve information from
 base_url = "https://www.komoot.de/api/v007/tours/"
 
-# Create a session to store login information
+# Create a session object to store login information and maintain session cookies
 s = requests.Session()
 # Print the session object to verify
 print(s)
@@ -59,7 +59,7 @@ payload = json.dumps({
     "reason": "null"
 })
 
-# Send a POST request to log in, using the previously obtained cookies
+# Send a POST request to log in, using headers, payload, and previously obtained cookies, to authenticate the user
 s.post(login_url, headers=headers, data=payload, cookies=cookies)
 
 # Perform a GET request to another URL to complete the login process
