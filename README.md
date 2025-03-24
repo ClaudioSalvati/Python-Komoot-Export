@@ -4,7 +4,7 @@ Export all tour data and gpx tracks from Komoot via Python and make them availab
 ## Motivation
 I wanted to download all komoot data to analyse it in Tableau. To avoid downloading all tour manually, I started looking around for ready-to-use scripts for python. 
 I came along [Get Komoot tour data without API](https://python.plainenglish.io/get-komoot-tour-data-without-api-143df64e51fa), pointing to [github.com/simplylu/medium_komoot](https://github.com/simplylu/medium_komoot), but I wasn't that happy with it.
-So I started writing the code with the help of ChatGPT and this is the result
+So I started adjusting the code and this is the result.
 
 ## Limitations
 I have limited knowledge of python, so the code will have great potential for optimizatio in terms of simplicity and performance.
