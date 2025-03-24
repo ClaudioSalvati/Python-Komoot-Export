@@ -27,7 +27,7 @@ With the following script, you can export your komoot data in JSON format and st
   * It is not required for an analysis in Tableau or PowerBi, but can be useful if you use Excel
 
 ## Credits
-As already mentioned, the original code for the extraction (step 1) comes from [simplylu](https://github.com/simplylu/). The rest is result of "conversations" with ChatGPT and my own (basic) Python knowledge
+As already mentioned, the original code for the extraction (step 1) comes from [simplylu](https://github.com/simplylu/). The rest is the result of fulfilling my own needs in a simple way.
 
 ## Disclaimer
 I offer the code as-is and as-available, and I make no representations or warranties of any kind concerning it, whether express, implied, statutory, or other. This includes, without limitation, warranties of title, merchantability, fitness for a particular purpose, non-infringement, absence of latent or other defects, accuracy, or the presence or absence of errors, whether or not known or discoverable.
